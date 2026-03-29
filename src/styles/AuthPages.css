@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    height: 450px;
+    width: 400px;
+    border: 2px solid black;
+    border-radius: 15px;
+    margin: auto;
+    user-select: none;
+    box-shadow: 5px 8px #696969;
+
+}
+.Your-Application{
+   font-size : 48px;
+}
+.img-container img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    flex-direction: column;
+    position: relative;
+    top: -10px;
+}
+.login-text{
+    position:absolute;
+    top: 150px;
+    font-size: 28px;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+    height: 300px;
+    margin-top: 50px;
+}
+
+.form label:hover {
+    cursor: pointer;
+}
+
+.form-input-email {
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 8px;
+    padding-top: 2px;
+}
+.form-input-password {
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 8px;
+    padding-top: 2px;
+}
+
+.check{
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    align-items: center;
+   
+}
+.check input{
+    height: 20px;
+    width: 20px;
+
+}
+
+.login-button button{
+    padding: 12px 70px;
+    margin-bottom: 40px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: rgb(0, 119, 199);
+    color: white;
+    border: 0;
+    font-weight: 700;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 420px){
+    .Your-Application{
+        display: flex;
+        flex-direction: column;
+        border: 2px solid;
+        font-size: clamp(1vw, calc(2vw + 1.5rem), 3rem);
+     }
+}
+
+
