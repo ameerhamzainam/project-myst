@@ -3,11 +3,14 @@ import UserModel from "@/model/User";
 import bcrypt from "bcrypt";
 import { sendVerificationEmail } from "@/helpers/sendVerificationEmail";
 import { success } from "zod";
+import { verificationCode } from '../../helpers/GenerateVerificationCode'
+
 
 export async function POST(request: Request) {
   await dbConnect();
   try {
     const { username, email, passowrd } = await request.json();
+    //checking the username if its taken
     const ExistedVerifiedUsername = await UserModel.findOne({
       username,
       isVerified: true,
@@ -24,9 +27,7 @@ export async function POST(request: Request) {
       );
     }
     const ExistedUserEmail = await UserModel.findOne({ email });
-    const verificationCode = Math.floor(
-      100000 + Math.random() * 900000,
-    ).toString();
+    
     if (ExistedUserEmail) {
       if (ExistedUserEmail.isVerified) {
         return Response.json(
@@ -42,7 +43,7 @@ export async function POST(request: Request) {
         const hashedPassword = await bcrypt.hash(passowrd, 8);
         ExistedUserEmail.password = hashedPassword;
         ExistedUserEmail.verifyCode = verificationCode;
-        ExistedUserEmail.verifyCodeExpiry = new Date(Date.now() + 3600000);
+        ExistedUserEmail.verifyCodeExpiry = new Date(Date.now() + 3600000); //1 hour expiry date
         await ExistedUserEmail.save();
       }
     } else {
@@ -62,6 +63,7 @@ export async function POST(request: Request) {
       });
       await NewUser.save();
     }
+    
     //send verification Email now
     const emailResponse = await sendVerificationEmail(
       email,
