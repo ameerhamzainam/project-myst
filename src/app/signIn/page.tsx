@@ -1,42 +1,43 @@
-import { signIn } from "@/auth"; 
+"use client"; // Required for handling form state/errors in the UI
+
+import { useActionState } from "react";
 import Image from "next/image";
+import { loginAction } from "../actions/login"; // We will create this action
 import "../../styles/AuthPages.css";
 import AvatarImage from "../../../assets/authPages/login.jpg";
 
 export default function LoginPage() {
+  // state will contain whatever our server action returns (error or success)
+  const [state, formAction, isPending] = useActionState(loginAction, undefined);
+
   return (
     <div className="login-wrapper">
       <header>
-        {/* Matches .Your-Application in CSS */}
         <h1 className="Your-Application">Myst Application</h1>
       </header>
 
-      <form
-        action={async (formData) => {
-          "use server";
-          await signIn("credentials", formData);
-        }}
-      >
-        {/* Matches .container in CSS */}
+      <form action={formAction}>
         <div className="container">
-          
-          {/* Matches .img-container in CSS */}
           <div className="img-container">
-            <Image 
-              src={AvatarImage} 
-              alt="login page image" 
-              width={100} 
+            <Image
+              src={AvatarImage}
+              alt="login page image"
+              width={100}
               height={100}
               priority
             />
           </div>
-          
-          {/* Matches .login-text in CSS */}
+
           <div className="login-text">
             <h1>Sign In</h1>
+            {/* Display the error message if the action returns one */}
+            {state?.error && (
+              <p style={{ color: "#ff4d4d", fontSize: "14px", marginTop: "10px" }}>
+                {state.error}
+              </p>
+            )}
           </div>
 
-          {/* Matches .form in CSS */}
           <div className="form">
             <label htmlFor="email">Email</label>
             <input
@@ -57,17 +58,12 @@ export default function LoginPage() {
               placeholder="Enter your password"
               className="form-input-password"
             />
-
-            {/* Matches .check in CSS */}
-            <div className="check">
-              <input type="checkbox" id="checkbox" name="saveDevice" />
-              <label htmlFor="checkbox">Save Device ( Beta )</label>
-            </div>
           </div>
 
-          {/* Matches .login-button in CSS */}
           <div className="login-button">
-            <button type="submit">Login</button>
+            <button type="submit" disabled={isPending}>
+              {isPending ? "Authenticating..." : "Login"}
+            </button>
           </div>
         </div>
       </form>
