@@ -3,7 +3,7 @@ import UserModel from "@/model/User";
 import bcrypt from "bcrypt";
 import { sendVerificationEmail } from "@/helpers/sendVerificationEmail";
 import { success } from "zod";
-import { verificationCode } from '../../helpers/GenerateVerificationCode'
+import { verificationCode } from '../../../helpers/GenerateVerificationCode'
 
 
 export async function POST(request: Request) {

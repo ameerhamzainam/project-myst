@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-
+import Navbar from "../components/Navbar/page";
 export default async function DashboardPage() {
   const session = await auth();
 
@@ -10,7 +10,11 @@ export default async function DashboardPage() {
   }
 
   return (
+    
     <div style={{ padding: "40px" }}>
+      <div>
+      <Navbar></Navbar>
+    </div>
       <h1>Dashboard</h1>
       <p>Welcome back, <strong>{session.user?.name || session.user?.email}</strong>!</p>
       
