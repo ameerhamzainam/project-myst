@@ -3,7 +3,7 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 import bcrypt from "bcryptjs";
 
-export async function registerUser(formData: FormData) {
+export async function registerUser(prevState: any,formData: FormData) {
   await dbConnect();
 
   const email = formData.get("email") as string;
