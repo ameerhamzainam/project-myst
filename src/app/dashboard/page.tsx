@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import Navbar from "../components/Navbar/page";
+import AIPromptGenerator from "../components/AIPromptGenerator/page";
 export default async function DashboardPage() {
   const session = await auth();
 
@@ -22,6 +23,7 @@ export default async function DashboardPage() {
         <h3>Your Profile Info</h3>
         <p>Email: {session.user?.email}</p>
       </div>
+      <AIPromptGenerator/>
     </div>
   );
 }
