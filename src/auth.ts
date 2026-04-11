@@ -20,8 +20,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           // 1. Find User
           const user = await UserModel.findOne({
             $or: [
-              { email: credentials.email },
-              { username: credentials.username }
+              { email: credentials.identifier },
+              { username: credentials.identifier }
             ]
           })
 

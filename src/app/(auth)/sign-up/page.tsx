@@ -28,7 +28,7 @@ import { Controller } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-const signIn = () => {
+const signUp = () => {
   const [username, setUsername] = useState("");
   const [IsUserNameAvailableMessage, SetIsUserNameAvailableMessage] =
     useState("");
@@ -196,7 +196,7 @@ const signIn = () => {
         <div className="text-center mt-4">
           <p>
             Already a member? {' '}
-            <Link href='/signIn' className="text-blue-600 hover:text-blue-800">
+            <Link href='/sign-in' className="text-blue-600 hover:text-blue-800">
             Sign In</Link>
           </p>
         </div>
@@ -205,4 +205,4 @@ const signIn = () => {
   );
 };
 
-export default signIn;
+export default signUp;
