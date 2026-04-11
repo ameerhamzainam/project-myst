@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { signOut, useSession } from "next-auth/react"; // Add useSession
 import Link from "next/link"; // Use Next.js Link for better performance
+import {User} from 'next-auth'
 
 const Navbar: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
